@@ -1,5 +1,7 @@
 package zyt.pashwamroo.mvc.beans;
 
+import java.util.Objects;
+
 public class Emp {
 		
 	private int id;  
@@ -30,8 +32,25 @@ public class Emp {
 	}  
 	public void setDesignation(String designation) {  
 	    this.designation = designation;  
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(designation, id, name, salary);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Emp other = (Emp) obj;
+		return Objects.equals(designation, other.designation) && id == other.id && Objects.equals(name, other.name)
+				&& Float.floatToIntBits(salary) == Float.floatToIntBits(other.salary);
 	}  
 	  
 
+	
 
 }
